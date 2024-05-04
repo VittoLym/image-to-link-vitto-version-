@@ -28,21 +28,21 @@
   }
   function handleInput(e) {
     formElement.value = e.target.files[0]
-    console.log(formElement.value)
+    console.log('log de prueba.')
   }
 </script>
 
 <template>
   <div>
     <h3>Imagen a Link</h3>
-    <img :src="urlImage" alt="">
+    <img :src="urlImage != '' ? urlImage : IMG_DEFAULT" alt="">
     <form @submit="handleSubmit">
       <label for="imagenInput"> Elegir Archivo: 
         <span v-html="formElement.name"></span>
       </label>
-      <a :href="urlImage" target="_blank" v-html="urlImage ? urlImage : 'Todavia no genera una imagen.'"></a>
       <input type="file" @change="handleInput" id="imagenInput">
       <button>Create Link</button>
+      <a :href="urlImage" target="_blank" v-html="urlImage ? urlImage : 'Todavia no genera una imagen.'"></a>
     </form>
   </div>
 </template>
