@@ -3,7 +3,7 @@ import Form from './Form.vue'
 </script>
 <template>
     <div class="container">
-        <h3>Imagen a Link</h3>
+        <h3>Imagen to Link</h3>
         <Form></Form>
     </div>
 </template>
