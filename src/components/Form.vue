@@ -106,7 +106,7 @@ function dragStyle(e) {
         class="copy"
         @click="copyLink"
         width="48px"
-        height="48px"
+        height="50px"
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -184,13 +184,16 @@ article {
 }
 .copy {
   position: absolute;
-  right: 490px;
-  bottom: 70px;
+  right: 485px;
+  bottom: 68px;
   transition: all ease .2s;
   cursor: pointer;
+  padding:0 .2rem;
+  background-color:#00000000;
+  border-radius:0 10px 10px 0;
 }
 .copy:hover {
-  transform: scale(1.1);
+  background-color:#00000066;
 }
 .copy:active {
   transform: scale(.9);
@@ -209,9 +212,11 @@ article {
 }
 a {
   overflow: hidden;
-  width: 75%;
+  max-width: 67%;
+  text-overflow:ellipsis;
   height: 5vh;
   padding: .6rem .3rem;
+  padding-right:8.7%;
   color: #fff;
   line-height: 5vh;
   border-radius: 10px;
