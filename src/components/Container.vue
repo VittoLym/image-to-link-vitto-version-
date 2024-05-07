@@ -3,7 +3,7 @@ import Form from './Form.vue'
 </script>
 <template>
     <div class="container">
-        <h3>Imagen to Link</h3>
+        <h3><span class="image">Image</span> to <span>Link</span> </h3>
         <Form></Form>
     </div>
 </template>
@@ -26,4 +26,11 @@ h3{
   margin:0;
   color:#000;
 }
+.image{
+  color:#662299;
+}
+span{
+  color:green;
+}
+
 </style>

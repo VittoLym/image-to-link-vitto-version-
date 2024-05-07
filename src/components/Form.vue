@@ -60,7 +60,7 @@ function dragStyle(e) {
 
       @drop.prevent="handleDrag"
     >
-      Drop your Archive:
+      Drop your Image:
       <svg
         class="drop"
         fill="#fff"
@@ -146,74 +146,77 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: max-content;
   width: 50vw;
+  height: max-content;
   margin: 0;
 }
 .archive-input {
-  width: 50vw;
-  height: 20vh;
-  background-color: #00000054;
-  border-radius: 10px;
-  color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 50vw;
+  height: 20vh;
+  color: #fff;
+  background-color: #00000054;
+  border-radius: 10px;
+  transition: all ease .2s;
   cursor: pointer;
-  transition:all ease .2s;
 }
-.draging{
-  background-color:#00000068;
+.draging {
+  background-color: #00000068;
 }
-.draging-item{
-  fill:#00b52e;
+.draging-item {
+  fill: #00b52e;
 }
 span {
-  font-weight: bold;
   font-size: 1.2rem;
+  font-weight: bold;
 }
 input[type="file"] {
   display: none;
 }
 article {
   display: flex;
-  width: 50vw;
-  justify-content: space-between;
-  margin: 1rem;
   flex-wrap: wrap;
+  justify-content: space-between;
+  width: 50vw;
+  margin: 1rem;
 }
 .copy {
   position: absolute;
   right: 490px;
   bottom: 70px;
+  transition: all ease .2s;
   cursor: pointer;
-  transition: all ease 0.2s;
 }
 .copy:hover {
   transform: scale(1.1);
 }
+.copy:active {
+  transform: scale(.9);
+}
 .drop {
+  margin: .8rem 0;
   border-radius: 10px;
-  margin: 0.8rem 0;
   animation-duration: 1s;
-  animation-name: moveDrop;
   animation-iteration-count: infinite;
+  animation-name: moveDrop;
 }
 .title {
   width: 50vw;
-  margin-bottom: 0.6rem;
+  margin-bottom: .6rem;
   font-weight: bolder;
 }
 a {
+  overflow: hidden;
   width: 75%;
   height: 5vh;
-  line-height: 5vh;
-  background-color: #00000054;
-  border-radius: 10px;
+  padding: .6rem .3rem;
   color: #fff;
-  overflow: hidden;
-  transition: all ease 0.2s;
-  padding: 0.6rem 0.3rem;
+  line-height: 5vh;
+  border-radius: 10px;
+  transition: all ease .2s;
+  background-color:#00000054;
 }
 a:hover {
   color: #6a2dda;
@@ -224,7 +227,7 @@ a:hover {
     margin-top: 1.2rem;
   }
   75% {
-    margin-top: 0.4rem;
+    margin-top: .4rem;
   }
 }
 </style>
