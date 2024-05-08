@@ -17,7 +17,7 @@ import Form from './Form.vue'
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: start;
+  justify-content: space-between;
   margin: .5rem 0;
   padding:1rem 0;
 }

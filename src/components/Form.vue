@@ -1,7 +1,8 @@
 <script setup>
 import DropSvg from "./DropSvg.vue";
-import { ref } from "vue";
 import Links from "./Links.vue";
+import LoaderUI from "./LoaderUI.vue"
+import { ref } from "vue";
 import { toast } from "vue3-toastify";
 const KEY = import.meta.env.VITE_API_SECRET;
 const ENDPOINT_CLOUD = import.meta.env.VITE_CLOUDINARY_URL;
@@ -9,6 +10,7 @@ const IMG_DEFAULT = import.meta.env.VITE_DEFAULT_IMAGE;
 const formElement = ref("");
 const urlImage = ref(IMG_DEFAULT);
 const isDraging = ref(false);
+const vtest = ref(true)
 
 async function handleSubmit(e) {
   e.preventDefault();
@@ -63,17 +65,21 @@ function handleDrag(e) {
     }
     reader.readAsDataURL(formElement.value)
   }
+    vtest.value = true
     isDraging.value = false
 }
 function dragStyle() {
+  vtest.value = !vtest.value
   isDraging.value= !isDraging.value
 }
 </script>
 <template>
   <img
-    :src="urlImage != '' ? urlImage : IMG_DEFAULT"
+    v-if="vtest"
+    :src="urlImage"
     alt="Default image"
   />
+  <LoaderUI v-else/>
   <form @submit="handleSubmit">
     <label
       for="imagenInput"
@@ -95,7 +101,7 @@ function dragStyle() {
 <style scoped>
 img {
   width: 50vw;
-  max-height: 40vh;
+  height: 34vh;
   margin: 1rem;
   margin-top: 0;
   border-radius: 10px;
