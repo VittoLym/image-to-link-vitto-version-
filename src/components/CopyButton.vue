@@ -3,9 +3,10 @@ import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
 function copyLink(e) {
   e.preventDefault();
-  const urlCopy = document.getElementById("url");
+  const urlCopy = document.getElementById("link");
+  console.log(urlCopy.text)
   if(urlCopy != null){
-    navigator.clipboard.writeText(urlCopy);
+    navigator.clipboard.writeText(urlCopy.text);
     toast.success('was copied successfully',{
       autoClose:500,
     });

@@ -8,6 +8,7 @@ const props = defineProps(['urlImage'])
       <label for="url" class="title">Your Link: </label>
       <article id="url">
         <a
+          id="link"
           :href="urlImage"
           target="_blank"
           v-html="urlImage"
