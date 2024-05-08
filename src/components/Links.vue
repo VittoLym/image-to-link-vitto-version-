@@ -27,6 +27,7 @@ const props = defineProps(['urlImage'])
 }
 #url{
     width:35vw;
+    max-width:80%;
     display:flex;
     justify-content:start;
     align-items:start;
@@ -36,6 +37,7 @@ a {
   text-overflow:ellipsis;
   height: 5vh;
   width:85%;
+
   padding: .6rem .3rem;
   color: #fefefe;
   line-height: 5vh;

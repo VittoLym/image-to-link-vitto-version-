@@ -57,15 +57,16 @@ function handleDrag(e) {
       autoClose:3000,
       closeButton:true,
     })
+    vtest.value = true
   }
   else{
     const reader = new FileReader();
     reader.onload = function(e){
       urlImage.value = e.target.result
+      vtest.value = true
     }
     reader.readAsDataURL(formElement.value)
   }
-    vtest.value = true
     isDraging.value = false
 }
 function dragStyle() {
@@ -127,7 +128,7 @@ form {
   cursor: pointer;
 }
 .draging {
-  background-color: #00000068;
+  background-color: #00000099;
 }
 .draging-item {
   fill: #00b52e;
@@ -145,20 +146,6 @@ article {
   justify-content: space-between;
   width: 50vw;
   margin: 1rem;
-}
-.copy {
-  height:7.6vh;
-  position: absolute;
-  right: 485px;
-  bottom: 68px;
-  transition: all ease .2s;
-  cursor: pointer;
-  padding:.2rem;
-  background-color:#00000000;
-  border-radius:0 10px 10px 0;
-}
-.copy:hover {
-  background-color:#00000066;
 }
 .drop {
   margin: .8rem 0;

@@ -16,7 +16,7 @@
   margin: 1rem;
   margin-top: 0;
   border-radius: 10px;
-  background-color:#00000056;
+  background-color:#00000099;
 }
 
 .bar {

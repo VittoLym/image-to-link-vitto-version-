@@ -25,7 +25,6 @@
   padding: 16px 36px;
   border: 0;
   font-size: 16px;
-  border-radius: 100px;
   font-weight: 600;
   cursor: pointer;
   overflow: hidden;
@@ -56,7 +55,6 @@
   transform: translate(-50%, -50%);
   width: 20px;
   height: 7vh;
-  border-radius: 50%;
   opacity: 0;
   transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -72,7 +70,8 @@
 .animated-button:hover {
   box-shadow: 0 0 0 12px transparent;
   color: #fefefe;
-  border-radius: 12px;
+  border-radius: 10px;
+  background-color:#00000099;
 }
 
 .animated-button:hover .arr-1 {
@@ -93,7 +92,6 @@
 
 .animated-button:active {
   scale: 0.95;
-  box-shadow: 0 0 0 4px greenyellow;
 }
 
 .animated-button:hover .circle {
