@@ -1,5 +1,8 @@
 <script setup>
+import DropSvg from "./DropSvg.vue";
 import { ref } from "vue";
+import Links from "./Links.vue";
+import { toast } from "vue3-toastify";
 const KEY = import.meta.env.VITE_API_SECRET;
 const ENDPOINT_CLOUD = import.meta.env.VITE_CLOUDINARY_URL;
 const IMG_DEFAULT = import.meta.env.VITE_DEFAULT_IMAGE;
@@ -31,23 +34,45 @@ async function handleSubmit(e) {
 
 function handleInput(e) {
   formElement.value = e.target.files[0];
-}
-function copyLink() {
-  const urlCopy = document.getElementById("url");
-  navigator.clipboard.writeText(urlCopy);
+  if(formElement === undefined){
+    toast.error('try another type of image.',{
+      autoClose:3000,
+      closeButton:true,
+    })
+  }
+  else{
+    const reader = new FileReader();
+    reader.onload = function(e){
+      urlImage.value = e.target.result
+    }
+    reader.readAsDataURL(formElement.value)
+  }
 }
 function handleDrag(e) {
   formElement.value = e.dataTransfer.files[0];
-  isDraging.value = false
+  if(formElement.value === undefined){
+    toast.error('try another type of image.',{
+      autoClose:3000,
+      closeButton:true,
+    })
+  }
+  else{
+    const reader = new FileReader();
+    reader.onload = function(e){
+      urlImage.value = e.target.result
+    }
+    reader.readAsDataURL(formElement.value)
+  }
+    isDraging.value = false
 }
-function dragStyle(e) {
+function dragStyle() {
   isDraging.value= !isDraging.value
 }
 </script>
 <template>
   <img
     :src="urlImage != '' ? urlImage : IMG_DEFAULT"
-    alt="imagen base para link"
+    alt="Default image"
   />
   <form @submit="handleSubmit">
     <label
@@ -57,81 +82,14 @@ function dragStyle(e) {
       @dragenter.prevent="dragStyle"
       @dragleave.prevent="dragStyle"
       @dragover.prevent
-
       @drop.prevent="handleDrag"
     >
       Drop your Image:
-      <svg
-        class="drop"
-        fill="#fff"
-        height="52px"
-        width="52px"
-        version="1.1"
-        id="Layer_1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        viewBox="0 0 512 512"
-        xml:space="preserve"
-        stroke="#662299"
-        :class="{'draging-item' : isDraging}"
-      >
-        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-        <g
-          id="SVGRepo_tracerCarrier"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        ></g>
-        <g id="SVGRepo_iconCarrier">
-          <g>
-            <g>
-              <path
-                d="M0,0v512h512V0H0z M420.416,207.083L271.083,356.416c-4.16,4.16-9.621,6.251-15.083,6.251 c-5.462,0-10.923-2.091-15.083-6.251L91.584,207.083c-8.341-8.341-8.341-21.824,0-30.165c8.341-8.341,21.824-8.341,30.165,0 L256,311.168l134.251-134.251c8.341-8.341,21.824-8.341,30.165,0C428.757,185.259,428.757,198.741,420.416,207.083z"
-              ></path>
-            </g>
-          </g>
-        </g>
-      </svg>
-      <span v-html="formElement.name"></span>
+      <DropSvg v-if="!formElement?.name" :isDraging='isDraging'/>
+      <span v-html="formElement?.name"></span>
     </label>
     <input type="file" @change="handleInput" id="imagenInput" />
-    <article>
-      <label for="url" class="title">Your Link: </label>
-      <a
-        id="url"
-        :href="urlImage"
-        target="_blank"
-        v-html="urlImage ? urlImage : 'Todavia no ingresa una imagen.'"
-      ></a>
-      <svg
-        class="copy"
-        @click="copyLink"
-        width="48px"
-        height="50px"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-        <g
-          id="SVGRepo_tracerCarrier"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        ></g>
-        <g id="SVGRepo_iconCarrier">
-          <path
-            d="M6 11C6 8.17157 6 6.75736 6.87868 5.87868C7.75736 5 9.17157 5 12 5H15C17.8284 5 19.2426 5 20.1213 5.87868C21 6.75736 21 8.17157 21 11V16C21 18.8284 21 20.2426 20.1213 21.1213C19.2426 22 17.8284 22 15 22H12C9.17157 22 7.75736 22 6.87868 21.1213C6 20.2426 6 18.8284 6 16V11Z"
-            stroke="#1C274C"
-            stroke-width="1.5"
-          ></path>
-          <path
-            d="M6 19C4.34315 19 3 17.6569 3 16V10C3 6.22876 3 4.34315 4.17157 3.17157C5.34315 2 7.22876 2 11 2H15C16.6569 2 18 3.34315 18 5"
-            stroke="#1C274C"
-            stroke-width="1.5"
-          ></path>
-        </g>
-      </svg>
-      <button>Create Link</button>
-    </article>
+    <Links :urlImage="urlImage"/>
   </form>
 </template>
 <style scoped>
@@ -156,7 +114,7 @@ form {
   align-items: center;
   width: 50vw;
   height: 20vh;
-  color: #fff;
+  color: #fefefe;
   background-color: #00000054;
   border-radius: 10px;
   transition: all ease .2s;
@@ -183,20 +141,18 @@ article {
   margin: 1rem;
 }
 .copy {
+  height:7.6vh;
   position: absolute;
   right: 485px;
   bottom: 68px;
   transition: all ease .2s;
   cursor: pointer;
-  padding:0 .2rem;
+  padding:.2rem;
   background-color:#00000000;
   border-radius:0 10px 10px 0;
 }
 .copy:hover {
   background-color:#00000066;
-}
-.copy:active {
-  transform: scale(.9);
 }
 .drop {
   margin: .8rem 0;
@@ -204,28 +160,6 @@ article {
   animation-duration: 1s;
   animation-iteration-count: infinite;
   animation-name: moveDrop;
-}
-.title {
-  width: 50vw;
-  margin-bottom: .6rem;
-  font-weight: bolder;
-}
-a {
-  overflow: hidden;
-  max-width: 67%;
-  text-overflow:ellipsis;
-  height: 5vh;
-  padding: .6rem .3rem;
-  padding-right:8.7%;
-  color: #fff;
-  line-height: 5vh;
-  border-radius: 10px;
-  transition: all ease .2s;
-  background-color:#00000054;
-}
-a:hover {
-  color: #6a2dda;
-  text-decoration: underline;
 }
 @keyframes moveDrop {
   25% {
