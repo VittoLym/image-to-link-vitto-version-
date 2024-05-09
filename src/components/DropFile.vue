@@ -3,10 +3,11 @@ import { ref, defineEmits, } from 'vue'
 import { toast } from "vue3-toastify";
 import DropSvg from "./DropSvg.vue";
 const formElement = ref("");
-const emits = defineEmits(['urlImage','vtest','formElement'])
+const emits = defineEmits(['urlImage','vtest','formElement','titleLink'])
 const urlImage = ref('');
 const isDraging = ref(false);
 const vtest = ref(true)
+const titleLink = ref('')
 
 function handleInput(e) {
   formElement.value = e.target.files[0];
@@ -26,6 +27,8 @@ function handleInput(e) {
       emits('urlImage',urlImage)
       vtest.value = true
       emits('vtest', vtest.value)
+      titleLink.value = 'Create your link.'
+      emits('titleLink', titleLink.value)
     }
     reader.readAsDataURL(formElement.value)
   }
@@ -49,6 +52,8 @@ function handleDrag(e) {
       emits('urlImage', urlImage.value)
       vtest.value = true
       emits('vtest', vtest.value)
+      titleLink.value = 'Create your link.'
+      emits('titleLink', titleLink.value)
     }
     reader.readAsDataURL(formElement.value)
   }

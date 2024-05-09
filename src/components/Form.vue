@@ -5,6 +5,7 @@ import LoaderUI from "./LoaderUI.vue";
 import DropFile from "./DropFile.vue";
 const IMG_DEFAULT = import.meta.env.VITE_DEFAULT_IMAGE;
 const urlImage = ref(IMG_DEFAULT)
+const linkImage = ref('')
 const vtest = ref(true)
 const formElement = ref('')
 const KEY = import.meta.env.VITE_API_SECRET;
@@ -17,6 +18,7 @@ async function handleSubmit(e) {
     if (formElement.value == "") {
       urlImage.value = "";
     } else {
+      linkImage.value = 'Creating your link, please wait.'
       formData.append("file", formElement.value);
       formData.append("upload_preset", "bye1zwq8");
       formData.append("api_key", KEY);
@@ -26,15 +28,13 @@ async function handleSubmit(e) {
       });
       const data = await response.json();
       urlImage.value = data.secure_url;
+      linkImage.value = ''
     }
   } catch (e) {
     console.log(e);
   }
 }
 
-function eraseDrop(e){
-  console.log(e)
-}
 </script>
 <template>
   <img
@@ -44,8 +44,8 @@ function eraseDrop(e){
   />
   <LoaderUI v-else/>
   <form @submit="handleSubmit">
-    <DropFile @urlImage=" urlImage = $event" @vtest="vtest = $event" @formElement="formElement = $event"/>
-    <Links :urlImage="urlImage"/>
+    <DropFile @urlImage=" urlImage = $event" @vtest="vtest = $event" @formElement="formElement = $event" @titleLink="linkImage = $event"/>
+    <Links :linkImage="linkImage != '' ? linkImage : urlImage"/>
   </form>
 </template>
 <style scoped>
