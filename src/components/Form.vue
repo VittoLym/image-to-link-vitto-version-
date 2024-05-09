@@ -16,7 +16,7 @@ async function handleSubmit(e) {
   const formData = new FormData();
   try {
     if (formElement.value == "") {
-      urlImage.value = "";
+      urlImage.value = IMG_DEFAULT;
     } else {
       linkImage.value = 'Creating your link, please wait.'
       formData.append("file", formElement.value);
