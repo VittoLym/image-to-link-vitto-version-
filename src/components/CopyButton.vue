@@ -11,6 +11,11 @@ function copyLink(e) {
       autoClose:500,
     });
   }
+  else{
+    toast.warning('Please create link first',{
+      autoClose:500,
+    })
+  }
 }
 </script>
 <template>
