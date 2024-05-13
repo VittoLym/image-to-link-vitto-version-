@@ -68,19 +68,22 @@ function dragStyle() {
 
 </script>
 <template>
-    <label
-      for="imagenInput"
-      class="archive-input"
+  <label
+    for="imagenInput"
+  >
+    Drop your Image:
+  </label>
+    <article 
+      class="archive-input" 
       :class="{'draging' : isDraging}"
       @dragenter.prevent="dragStyle"
       @dragleave.prevent="dragStyle"
       @dragover.prevent
       @drop.prevent="handleDrag"
-    >
-      Drop your Image:
+      >
       <DropSvg v-if="!formElement?.name" :isDraging='isDraging'/>
       <span v-else>{{formElement.name}}</span>
-    </label>
+    </article>
     <input type="file" @change="handleInput" id="imagenInput" />
 </template>
 <style scoped>
@@ -105,6 +108,7 @@ function dragStyle() {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content:center;
   width: 50vw;
   height: 20vh;
   color: #fefefe;
@@ -113,7 +117,11 @@ function dragStyle() {
   transition: all ease .2s;
   cursor: pointer;
 }
-
+label{
+  width:50vw;
+  margin-bottom:0.6rem;
+  font-weight:bolder;
+}
 .draging {
   background-color: #00000099;
 }
@@ -128,5 +136,14 @@ span {
   font-size: 1.2rem;
   font-weight: bold;
 }
-
+@media (max-width:800px){
+  .archive-input{
+    width:70vw;
+    height:15vh;
+  }
+  label{
+    width:70vw;
+    margin-bottom:.3rem;
+  }
+}
 </style>

@@ -100,4 +100,9 @@
   opacity: 1;
 }
 
+@media (max-width:800px){
+  .animated-button{
+    margin-top:1rem;
+  }
+}
 </style>

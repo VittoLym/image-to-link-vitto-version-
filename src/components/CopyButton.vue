@@ -140,4 +140,5 @@ function copyLink(e) {
 .isDisabled:hover{
   background-color :#c0c0c056;
 }
+
 </style>

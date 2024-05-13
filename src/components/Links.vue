@@ -15,7 +15,7 @@ onUpdated(() => {
 })
 </script>
 <template>
-    <article>
+    <article class="link-container">
       <label for="url" class="title">Your Link: </label>
       <article id="url">
         <p v-if="linkImage == 'Creating your link, please wait.'">
@@ -40,7 +40,6 @@ onUpdated(() => {
     </article>
 </template>
 <style scoped>
-
 .title {
   width: 50vw;
   margin-bottom: .6rem;
@@ -120,5 +119,20 @@ p{
   40% {
     transform: scaleY(1);
   }
+}
+@media (max-width:800px){
+  .link-container{
+    width:70vw;
+    margin:.6rem 0.4rem;
+    flex-direction: column;
+  }
+  .title{
+    width:70vw;
+  }
+  #url{
+    width:70vw;
+    max-width:70vw;
+  }
+
 }
 </style>

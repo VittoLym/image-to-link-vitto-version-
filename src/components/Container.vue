@@ -25,12 +25,15 @@ h3{
   font-size:2rem;
   margin:0;
   color:#fefefe;
+  width:80%;
 }
-.image{
-  color:#662299;
+@media (max-width:800px){
+  .container{
+  height: max-content;
+  max-height:100vh;
+  width: 80vw;
+  justify-content:start;
+  padding-bottom:0;
+  }
 }
-span{
-  color:green;
-}
-
 </style>

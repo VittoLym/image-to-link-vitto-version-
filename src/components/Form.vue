@@ -71,4 +71,21 @@ article {
   width: 50vw;
   margin: 1rem;
 }
+@media (max-width:800px){
+  img{
+    width: 70vw;
+    height: 25vh;
+    margin: 1rem;
+    margin-top: 0;
+    border-radius: 10px;
+    border:solid 1px #fefefe;
+  }
+  form{
+    width:70vw;
+    height:100%;
+  }
+  article{
+    width:70vw;
+  }
+}
 </style>
