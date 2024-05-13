@@ -72,8 +72,7 @@ function dragStyle() {
     for="imagenInput"
   >
     Drop your Image:
-  </label>
-    <article 
+    <article
       class="archive-input" 
       :class="{'draging' : isDraging}"
       @dragenter.prevent="dragStyle"
@@ -84,6 +83,7 @@ function dragStyle() {
       <DropSvg v-if="!formElement?.name" :isDraging='isDraging'/>
       <span v-else>{{formElement.name}}</span>
     </article>
+  </label>
     <input type="file" @change="handleInput" id="imagenInput" />
 </template>
 <style scoped>
@@ -129,7 +129,8 @@ label{
   fill: #00b52e;
 }
 input[type="file"] {
-  display: none;
+  display:none;
+
 }
 
 span {
