@@ -12,7 +12,7 @@
   align-items: center;
   justify-content:center;
   width: 50vw;
-  height: 100%;
+  height: 34vh;
   margin: 1rem;
   margin-top: 0;
   border-radius: 10px;
@@ -46,6 +46,16 @@
 
   40% {
     transform: scaleY(1);
+  }
+}
+@media (max-width:800px){
+  .loader{
+    width: 70vw;
+    height: 25vh;
+    margin: 1rem;
+    margin-top: 0;
+    border-radius: 10px;
+    border:solid 1px #fefefe;
   }
 }
 </style>
